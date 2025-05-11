@@ -36,10 +36,15 @@ public:
     // Save data to JSON file
     bool saveToJson(const std::string& filename = "ticker_data.json");
 
+    // Receive data from server
+    bool receiveData();
+    
+    // Handle missing sequences
+    void handleMissingSequences();
+
 private:
     // Socket operations
     bool sendRequest(uint8_t callType, uint8_t resendSeq = 0);
-    bool receiveData();
     
     // Data parsing
     Packet parsePacket(const std::vector<uint8_t>& data, size_t& offset);
@@ -47,7 +52,6 @@ private:
     std::string parseString(const std::vector<uint8_t>& data, size_t& offset, size_t length);
     
     // Helper functions
-    void handleMissingSequences();
     void convertToHostByteOrder(Packet& packet);
     
     // Member variables

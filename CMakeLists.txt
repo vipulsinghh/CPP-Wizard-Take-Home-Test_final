@@ -4,6 +4,16 @@ project(abx_client VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Include FetchContent
+include(FetchContent)
+
+# Fetch nlohmann_json
+FetchContent_Declare(
+    json
+    URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+)
+FetchContent_MakeAvailable(json)
+
 # Find required packages
 find_package(Threads REQUIRED)
 
